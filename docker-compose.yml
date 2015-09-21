@@ -1,12 +1,29 @@
+skydns:
+  container_name: skydns
+  image: crosbymichael/skydns
+  command: -nameserver 8.8.8.8:53 -domain ckan
+  dns: 8.8.8.8:53
+  ports:
+   - 172.17.42.1:53:53/udp
+
+skydock:
+  container_name: skydock
+  image: crosbymichael/skydock
+  command: -ttl 30 -environment dev -s /docker.sock -domain ckan -name skydns
+  volumes:
+   - /var/run/docker.sock:/docker.sock
+  links:
+    - skydns
+
 data:
+  container_name: data
   build: docker/data
   hostname: data
-  domainname: localdomain
 
 postgres:
+  container_name: postgres
   build: docker/postgres
   hostname: postgres
-  domainname: localdomain
   ports:
     - "5432:5432"
   volumes_from:
@@ -16,33 +33,36 @@ postgres:
     - DATASTORE_PASS=datastore_pass
 
 solr:
+  container_name: solr
   build: docker/solr
   hostname: solr
-  domainname: localdomain
   ports:
     - "8983:8983"
   volumes:
     - ./_src/ckan/ckan/config/solr/schema.xml:/opt/solr/example/solr/ckan/conf/schema.xml
 
 datapusher:
+  container_name: datapusher
   build: _service-provider/_datapusher
   hostname: datapusher
-  domainname: localdomain
   ports:
     - "8800:8800"
+  links:
+    - skydock:skydock
+    - ckan:ckan
 
 ckan:
+  container_name: ckan
   build: .
   hostname: ckan
-  domainname: localdomain
   ports:
     - "2222:22"
     - "5000:5000"
     - "8080:80"
   links:
+    - skydock:skydock
     - postgres:postgres
     - solr:solr
-    - datapusher:datapusher
   command: /sbin/my_init --enable-insecure-key
   volumes_from:
     - data
@@ -50,17 +70,16 @@ ckan:
     - ./_src:/usr/lib/ckan/default/src
     - ./_etc/ckan/custom_options.ini:/etc/ckan/default/custom_options.ini
     - ./_etc/supervisor/conf.d:/etc/supervisor/conf.d
+  environment:
+    - DATAPUSHER_URL=http://datapusher.ckan_datapusher.dev.ckan:8800
 
 nginx:
+  container_name: nginx
   build: docker/nginx
   hostname: nginx
-  domainname: localdomain
   links:
     - ckan:ckan
   ports:
     - "80:80"
   volumes:
     - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-
-
-
