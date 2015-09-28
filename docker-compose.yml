@@ -69,6 +69,7 @@ ckan:
   volumes:
     - ./_src:/usr/lib/ckan/default/src
     - ./_etc/ckan/custom_options.ini:/etc/ckan/default/custom_options.ini
+    - ./_etc/ckan/schemas:/etc/ckan/default/schemas
     - ./_etc/supervisor/conf.d:/etc/supervisor/conf.d
   environment:
     - DATAPUSHER_URL=http://datapusher.ckan_datapusher.dev.ckan:8800

@@ -1,0 +1,150 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "specimen",
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "Title",
+      "preset": "title",
+      "form_placeholder": "Specimen 147"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. specimen-147"
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "specimen_type",
+      "label": "Specimen Type",
+      "form_placeholder": "eg. Bone Marrow Aspirate"
+    },
+    {
+      "field_name": "cell_concentration",
+      "label": "Cell Concentration (Cells/ml)",
+      "form_placeholder": "eg. 27400000"
+    },
+    {
+      "field_name": "cell_viability",
+      "label": "Cell Viability (% Viable)",
+      "form_placeholder": "eg. 82.4"
+    },
+    {
+      "field_name": "collection_date",
+      "label": "Collection Date",
+      "preset": "date"
+    },
+    {
+      "field_name": "date_received_in_lab",
+      "label": "Date Received in Lab",
+      "preset": "date"
+    },
+    {
+      "field_name": "diagnosis",
+      "label": "Diagnosis"
+    },
+    {
+      "field_name": "specific_diagnosis",
+      "label": "Specific Diagnosis"
+    },
+    {
+      "field_name": "diagnosis_details",
+      "label": "Diagnosis Details"
+    },
+    {
+      "field_name": "diagnosis_date",
+      "label": "Diagnosis Date",
+      "preset": "date"
+    },
+    {
+      "field_name": "diagnosis_date_certainty",
+      "label": "Diagnosis Date Certainty"
+    },
+    {
+      "field_name": "dilution_for_cell_count",
+      "label": "Dilution for Cell Count",
+      "form_placeholder": "eg. 10:1"
+    },
+    {
+      "field_name": "final_resuspension_volume",
+      "label": "Final Resuspension Volume (ml)",
+      "form_placeholder": "eg. 10"
+    },
+    {
+      "field_name": "original_specimen_location",
+      "label": "Original Specimen Location",
+      "form_placeholder": "eg. OHSU"
+    },
+    {
+      "field_name": "processed_by",
+      "label": "Processed By"
+    },
+    {
+      "field_name": "comment",
+      "label": "Comment"
+    }
+  ],
+  "resource_fields": [
+    {
+      "field_name": "url",
+      "label": "URL",
+      "preset": "resource_url_upload"
+    },
+    {
+      "field_name": "name",
+      "label": "Name",
+      "form_placeholder": "Specimen 147, Forward Fast Q, Lane 4"
+    },
+    {
+      "field_name": "description",
+      "label": "Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "Some useful notes about the data"
+    },
+    {
+      "field_name": "format",
+      "label": "Format",
+      "preset": "resource_format_autocomplete"
+    },
+    {
+      "field_name": "fastq_type",
+      "label": "FastQ Data Type",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "dna",
+          "label": "DNA"
+        },
+        {
+          "value": "rna",
+          "label": "RNA"
+        }
+      ]
+    },
+    {
+      "field_name": "read_direction",
+      "label": "Read Direction",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "forward",
+          "label": "Forward"
+        },
+        {
+          "value": "reverse",
+          "label": "Reverse"
+        }
+      ]
+    },
+    {
+      "field_name": "lane_number",
+      "label": "Lane Number",
+      "form_placeholder": "eg. 1"
+    }
+  ]
+}

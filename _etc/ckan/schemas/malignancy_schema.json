@@ -1,0 +1,48 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "malignancy",
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "Title",
+      "preset": "title",
+      "form_placeholder": "Malignancy 147"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. malignancy-147"
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "diagnosis",
+      "label": "Diagnosis"
+    },
+    {
+      "field_name": "specific_diagnosis",
+      "label": "Specific Diagnosis"
+    },
+    {
+      "field_name": "diagnosis_details",
+      "label": "Diagnosis Details"
+    },
+    {
+      "field_name": "diagnosis_date",
+      "label": "Diagnosis Date",
+      "preset": "date"
+    },
+    {
+      "field_name": "diagnosis_date_certainty",
+      "label": "Diagnosis Date Certainty"
+    },
+    {
+      "field_name": "comment",
+      "label": "Comment"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "patient",
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "Title",
+      "preset": "title",
+      "form_placeholder": "BeatAML Patient 1"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. beataml-patient-1"
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "date_of_birth",
+      "label": "Date of Birth",
+      "preset": "date"
+    },
+    {
+      "field_name": "ethnicity",
+      "label": "Ethnicity",
+      "form_placeholder": "eg. Hispanic"
+    },
+    {
+      "field_name": "gender",
+      "label": "Gender",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "male",
+          "label": "Male"
+        },
+        {
+          "value": "female",
+          "label": "Female"
+        }
+      ]
+    },
+    {
+      "field_name": "rdw_indicator",
+      "label": "RDW Indicator",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False"
+        }
+      ]
+    },
+    {
+      "field_name": "race",
+      "label": "Race",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "american_indian",
+          "label": "American Indian"
+        },
+        {
+          "value": "asian",
+          "label": "Asian"
+        },
+        {
+          "value": "black",
+          "label": "Black"
+        },
+        {
+          "value": "multiracial",
+          "label": "Multiracial"
+        },
+        {
+          "value": "pacific_islander",
+          "label": "Pacific Islander"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "delined",
+          "label": "Declined"
+        },
+        {
+          "value": "unknown",
+          "label": "Unknown"
+        }
+      ]
+    },
+    {
+      "field_name": "vital_status",
+      "label": "Vital Status",
+      "preset": "select",
+      "choices": [
+        {
+          "value": "alive",
+          "label": "Alive"
+        },
+        {
+          "value": "deceased",
+          "label": "Deceased"
+        }
+      ]
+    }
+  ]
+}
