@@ -20,6 +20,10 @@
       "preset": "dataset_organization"
     },
     {
+      "field_name": "lab_id",
+      "label": "Lab ID"
+    },
+    {
       "field_name": "specimen_type",
       "label": "Specimen Type",
       "form_placeholder": "eg. Bone Marrow Aspirate"
@@ -47,10 +51,6 @@
     {
       "field_name": "diagnosis",
       "label": "Diagnosis"
-    },
-    {
-      "field_name": "specific_diagnosis",
-      "label": "Specific Diagnosis"
     },
     {
       "field_name": "diagnosis_details",
@@ -127,6 +127,16 @@
       ]
     },
     {
+      "field_name": "flow_cell_number",
+      "label": "Flow Cell Number",
+      "form_placeholder": "eg. 1"
+    },
+    {
+      "field_name": "lane_number",
+      "label": "Lane Number",
+      "form_placeholder": "eg. 1"
+    },
+    {
       "field_name": "read_direction",
       "label": "Read Direction",
       "preset": "select",
@@ -142,8 +152,8 @@
       ]
     },
     {
-      "field_name": "lane_number",
-      "label": "Lane Number",
+      "field_name": "file_number",
+      "label": "File Number",
       "form_placeholder": "eg. 1"
     }
   ]

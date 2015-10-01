@@ -24,10 +24,6 @@
       "label": "Diagnosis"
     },
     {
-      "field_name": "specific_diagnosis",
-      "label": "Specific Diagnosis"
-    },
-    {
       "field_name": "diagnosis_details",
       "label": "Diagnosis Details"
     },
