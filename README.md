@@ -170,6 +170,20 @@ Defines the set of services required to run CKAN. Read the [docker-compose.yml r
 
 ## Using Docker-compose (recommended)
 
+Note that this configuration uses Skydock to facilitate bidirectional networking
+between the CKAN and DataPusher containers. You must configure your Docker
+daemon to use the bridge IP 172.17.42.1./16. For example:
+
+  docker-machine create ckan --driver virtualbox --engine-opt bip=172.17.42.1/16 --engine-opt dns=172.17.42.1
+
+Additionally, the `skydock` container must be running before other containers
+are kicked off since those containers use `skydock` for DNS resolution. To
+start CKAN:
+
+1. `docker-compose -p ckan start skydock`.
+2. `docker-compose -p ckan up`.
+
+
 #### Option 1: Docker-compose is installed on the Docker host
 _If you have it installed, just type_
 
