@@ -20,6 +20,14 @@
       "preset": "dataset_organization"
     },
     {
+      "field_name": "patient_id",
+      "label": "Patient ID"
+    },
+    {
+      "field_name": "malignancy_id",
+      "label": "Malignancy ID"
+    },
+    {
       "field_name": "lab_id",
       "label": "Lab ID"
     },

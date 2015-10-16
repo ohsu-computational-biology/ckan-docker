@@ -20,6 +20,10 @@
       "preset": "dataset_organization"
     },
     {
+      "field_name": "patient_id",
+      "label": "Patient ID"
+    },
+    {
       "field_name": "diagnosis",
       "label": "Diagnosis"
     },

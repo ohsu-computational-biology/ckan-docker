@@ -2,7 +2,9 @@ skydns:
   container_name: skydns
   image: crosbymichael/skydns
   command: -nameserver 8.8.8.8:53 -domain ckan
-  dns: 8.8.8.8:53
+  dns:
+    - 8.8.8.8:53 # Google
+    - 137.53.223.44:53 # OHSU
   ports:
    - 172.17.42.1:53:53/udp
 
@@ -14,6 +16,11 @@ skydock:
    - /var/run/docker.sock:/docker.sock
   links:
     - skydns
+
+redis:
+  container_name: redis
+  hostname: datapusher
+  image: redis
 
 data:
   container_name: data
@@ -63,6 +70,7 @@ ckan:
     - skydock:skydock
     - postgres:postgres
     - solr:solr
+    - redis:redis
   command: /sbin/my_init --enable-insecure-key
   volumes_from:
     - data
