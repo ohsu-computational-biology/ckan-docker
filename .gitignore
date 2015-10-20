@@ -1,4 +1,7 @@
 # generic
+*.egg-info
+*.pyc
+*.swp
 .DS_Store
 .vagrant
 

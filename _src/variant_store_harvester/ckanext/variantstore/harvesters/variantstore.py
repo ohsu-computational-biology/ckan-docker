@@ -39,14 +39,17 @@ class VariantStoreHarvester(SingletonPlugin):
          "variantName": None
          }]
 
-    def _fetch_data(self, host, request_payloads):
+    def _fetch_data(self, host, request_payloads, log=None):
         """ Given a host and a series of request paylods, perform a variant
         search and normalize the responses into a dataframe. Serialize that
         dataframe back to a JSON object. """
 
         df = pd.DataFrame()
 
-        for request_payload in request_paylods:
+        for request_payload in request_payloads:
+            if log:
+                log.debug('Making a request to %r with %r', host, json.dumps(request_payload))
+
             request = urllib2.Request('{}/variants/search'.format(host))
             request.add_header('Content-Type', 'application/json')
             response = urllib2.urlopen(request, json.dumps(request_payload))
@@ -108,18 +111,20 @@ class VariantStoreHarvester(SingletonPlugin):
              "title": self.dataset_title,
              "owner_org": self.owner_org }
 
-    def _set_config(self, config_str):
+    def _set_config(self, config_str, log=None):
         """ Parse config as JSON. """
         if config_str:
             self.config = json.loads(config_str)
-            log.debug('Using config: %r', self.config)
+
+            if log:
+                log.debug('Using config: %r', self.config)
         else:
             self.config = {}
 
         # Take fields in DEFAULT_REQUEST and add them to config['requests']
         # if they don't exit.
         for request in self.requests:
-            for k,v in DEFAULT_REQUEST.iteritems():
+            for k,v in self.DEFAULT_REQUEST.iteritems():
                 if k not in request:
                     request[k] = v
 
@@ -136,23 +141,32 @@ class VariantStoreHarvester(SingletonPlugin):
         log = logging.getLogger(__name__ + '.VariantStore.gather')
         log.debug('VariantStoreHarvester gather_stage for job: %r', harvest_job)
 
+        self._set_config(harvest_job.source.config, log=log)
         obj = HarvestObject(guid = self.guid, job = harvest_job)
         obj.save()
         return [ obj.id ]
 
     def fetch_stage(self, harvest_object):
-        self._set_config(harvest_object.job.source.config)
-        data = self._fetch_data(self.host, self.requests)
+        log = logging.getLogger(__name__ + '.VariantStore.fetch')
+        log.debug('VariantStoreHarvester fetch_stage for object: %r', harvest_object.id)
+
+        url = harvest_object.source.url
+
+        self._set_config(harvest_object.job.source.config, log=log)
+        data = self._fetch_data(url, self.requests, log=log)
         harvest_object.content = data
         harvest_object.save()
         return True
 
     def import_stage(self, harvest_object):
+        log = logging.getLogger(__name__ + '.VariantStore.import')
+        log.debug('VariantStoreHarvester import_stage for job: %r', harvest_job)
+
         if not harvest_object:
             log.error('No harvest object received')
             return False
 
-        self._set_config(harvest_object.job.source.config)
+        self._set_config(harvest_object.job.source.config, log=log)
 
         df = pd.read_json(harvest_object.content)
 
