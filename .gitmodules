@@ -6,7 +6,7 @@
 	url = https://github.com/ckan/datapusher.git
 [submodule "_src/ckanext-scheming"]
 	path = _src/ckanext-scheming
-	url = git@github.com:open-data/ckanext-scheming.git
+	url = https://github.com/open-data/ckanext-scheming.git
 [submodule "_src/ckanext-harvest"]
 	path = _src/ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
